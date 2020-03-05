@@ -27,7 +27,7 @@ function route(α, β)
                 if go()
                     return true
                 end
-                Γ = Γ[1:end - 1]
+                Γ = Γ[1:end-1]
             end
         end
         return false
