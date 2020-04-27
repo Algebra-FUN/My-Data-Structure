@@ -1,6 +1,5 @@
 .vscode
-temp
+temp*
 *.exe
 __pycache__
-test.py
 tempCodeRunnerFile.py

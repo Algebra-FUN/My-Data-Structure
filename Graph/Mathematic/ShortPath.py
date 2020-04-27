@@ -1,16 +1,24 @@
 inf = float('inf')
 
-
+# w:邻接矩阵,u0:初始点
 def dijkstra(w, u0):
+    # n:图中点个数
     n = len(w)
+    # d:u0->i点距离
     d = [w[u0][v] if v is not u0 else 0 for v in range(n)]
+    # p:u0->i路程途径点
     p = [u0 if w[u0][i] < inf else -1 for i in range(n)]
-    V = set(range(n))
+    # U:全部点组成的集合
+    U = set(range(n))
+    # S:已确定最短距离的点集
     S = {u0}
+    # 重复n-1次
     for _ in range(n-1):
-        u = min(V - S, key=lambda x: d[x])
+        # 当前达到最短距离的点
+        u = min(U - S, key=lambda x: d[x])
+        # 将u加入S
         S |= {u}
-        for v in V - S:
+        for v in U - S:
             if d[u] + w[u][v] < d[v]:
                 d[v] = d[u] + w[u][v]
                 p[v] = u

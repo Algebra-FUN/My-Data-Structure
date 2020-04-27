@@ -3,7 +3,7 @@ from matplotlib import pyplot as plt
 
 
 class BinaryTree:
-    def __init__(self, data, lchild=None, rchild=None):
+    def __init__(self, data=None, lchild=None, rchild=None):
         self.root = data
         self.lchild = lchild
         self.rchild = rchild
@@ -35,7 +35,7 @@ class BinaryTree:
         return self.lchild, self.rchild
 
     def _node_repr(self):
-        return self.root if self.root else '*'
+        return str(self.root) if self.root else '*'
 
     def __repr__(self):
         if any(self.children()):
@@ -79,6 +79,15 @@ class BinaryTree:
 
     def postorder_traversal(self):
         return self.__order_traversal(lambda x: (x.lchild, x.rchild, x.root))
+
+    def __iter__(self):
+        if self.lchild:
+            for _ in self.lchild:
+                yield _
+        yield self
+        if self.rchild:
+            for _ in self.rchild:
+                yield _
 
     def level_traversal(self):
         queue = [self]

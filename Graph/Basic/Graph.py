@@ -66,6 +66,24 @@ class Graph:
                 if not visited[v.id]:
                     queue.append(v)
 
+    def topo_sort(self):
+        indegs = [0 for _ in self]
+        for u in self:
+            for v in u.edges:
+                indegs[v.id] += 1
+        stack = []
+        for u in self:
+            if indegs[u.id] is 0:
+                stack.append(u)
+        while stack:
+            u = stack.pop(0)
+            yield u
+            for v in u.edges:
+                indegs[v.id] -= 1
+                if indegs[v.id] is 0:
+                    stack.append(v)
+
+
     def display_graph_by_networkx(self):
         graph = self.to_networkx_graph()
         nx.draw_kamada_kawai(graph, with_labels=True, font_weight='bold')

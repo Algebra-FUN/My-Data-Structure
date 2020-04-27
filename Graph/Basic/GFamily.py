@@ -14,17 +14,16 @@ class NodLinGraph(Graph):
 if __name__ == "__main__":
     from matplotlib import pyplot as plt
     G = NodLinGraph(
-        names='ABCDEF',
+        names='012345',
         edges_by_names=(
-            ('A', 'B'),
-            ('A', 'C'),
-            ('C', 'B'),
-            ('A', 'D'),
-            ('C', 'E'),
-            ('D', 'F')
+            ('0', '1'),
+            ('1', '2'),
+            ('2', '3'),
+            ('4', '1'),
+            ('4', '5'),
+            ('5', '3')
         )
     )
-    print(list(G.DFS('C')))
-    print(list(G.BFS('C')))
+    print(*G.topo_sort())
     G.display_graph_by_networkx()
     plt.show()
