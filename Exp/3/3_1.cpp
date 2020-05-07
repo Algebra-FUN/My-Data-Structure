@@ -1,41 +1,10 @@
-#include <iostream>
+#include "3_base.h"
 
-using namespace std;
-
-typedef int KeyType;
-
-struct BSTNode
-{
-    KeyType key;
-    BSTNode *lchild, *rchild;
-};
-
-bool insertBST(BSTNode *&bst, KeyType key)
-{
-    if (bst == nullptr)
-    {
-        bst = (BSTNode *)malloc(sizeof(BSTNode));
-        bst->key = key, bst->lchild = bst->rchild = nullptr;
-        return true;
-    }
-    if (bst->key == key)
-        return false;
-    return insertBST(key < bst->key ? bst->lchild : bst->rchild, key);
-}
-
-BSTNode *createBST(KeyType keys[], int n)
-{
-    BSTNode *bst = nullptr;
-    for (int i = 0; i < n; ++i)
-        insertBST(bst, keys[i]);
-    return bst;
-}
-
-void easyDeleteBST(BSTNode **p_ptr)
+inline void easyDeleteBST(BSTNode **p_ptr)
 {
     BSTNode *q = *p_ptr;
     *p_ptr = q->lchild == nullptr ? q->rchild : q->lchild;
-    free(q);
+    delete q;
 }
 
 BSTNode **findMaxNodeptr(BSTNode **p_ptr)
@@ -58,25 +27,9 @@ bool deleteBST(BSTNode **p_ptr, KeyType key)
         easyDeleteBST(p_ptr);
     else
     {
-        BSTNode **m_ptr = findMaxNodeptr(&((*p_ptr)->lchild));
+        BSTNode **m_ptr = findMaxNodeptr(&(*p_ptr)->lchild);
         (*p_ptr)->key = (*m_ptr)->key;
         easyDeleteBST(m_ptr);
-    }
-    return true;
-}
-
-bool demonstrateBST(BSTNode *p)
-{
-    if (p == nullptr)
-        return false;
-    cout << p->key;
-    if (p->lchild != nullptr || p->rchild != nullptr)
-    {
-        cout << '(';
-        p->lchild != nullptr &&demonstrateBST(p->lchild);
-        cout << ',';
-        p->rchild != nullptr &&demonstrateBST(p->rchild);
-        cout << ')';
     }
     return true;
 }
@@ -86,12 +39,10 @@ void demonstrateDeleteANode(KeyType keys[9], KeyType key)
     BSTNode *bst = createBST(keys, 9);
     cout << "original binary search tree:\n";
     demonstrateBST(bst);
-    cout << endl
-         << "after delete node<" << key << ">:\n";
+    cout << "\nafter delete node<" << key << ">:\n";
     deleteBST(&bst, key);
     demonstrateBST(bst);
-    cout << endl
-         << "----------------" << endl;
+    cout << "\n----------------\n";
 }
 
 int main()
