@@ -27,7 +27,7 @@ inline void thread_node(TBTNode *&p)
 
 TBTNode *create_thread(TBTNode *p, FP thread)
 {
-    TBTNode *root = (TBTNode *)malloc(sizeof(TBTNode));
+    TBTNode *root = new TBTNode;
     root->ltag = 0, root->rtag = 1;
     root->rchild = p;
     if (p == nullptr)

@@ -12,7 +12,7 @@ struct TBTNode
 
 TBTNode *initNode(char chr)
 {
-    TBTNode *p = (TBTNode *)malloc(sizeof(TBTNode));
+    TBTNode *p = new TBTNode;
     p->data = chr;
     p->ltag = 0, p->rtag = 0;
     p->lchild = nullptr, p->rchild = nullptr;
@@ -66,9 +66,9 @@ void demonstrateTBT(TBTNode *p)
     }
 }
 
-// int main()
-// {
-//     char string[] = "A(B(D(,G),),C(E,F))\0";
-//     TBTNode *p = buildTBT(string);
-//     demonstrateTBT(p);
-// }
+int main()
+{
+    char string[] = "A(B(D(,G),),C(E,F))\0";
+    TBTNode *p = buildTBT(string);
+    demonstrateTBT(p);
+}
