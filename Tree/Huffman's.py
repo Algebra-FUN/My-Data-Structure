@@ -1,5 +1,6 @@
 from BinaryTree import BinaryTree
 from heapq import nsmallest
+from matplotlib import pyplot as plt
 
 def pop2min(queue):
     indexs = map(queue.index, nsmallest(2, queue))
@@ -16,7 +17,7 @@ class HuffmanTree(BinaryTree):
         return self.weight < other.weight
 
     def __add__(self, other):
-        return HuffmanTree(None, self, other, weight=self.weight+other.weight)
+        return HuffmanTree(self.root+other.root, self, other, weight=self.weight+other.weight)
 
     def _node_repr(self):
         return f'{super()._node_repr()}<{round(self.weight,2)}>'
@@ -66,17 +67,18 @@ class HuffmanCoder:
 
 if __name__ == "__main__":
     char_frequency = {
-        'a': 0.07,
-        'b': 0.19,
-        'c': 0.02,
-        'd': 0.06,
-        'e': 0.32,
-        'f': 0.03,
-        'g': 0.21,
-        'h': 0.1
+        'a': 0.1,
+        'b': 0.1,
+        'c': 0.1,
+        'd': 0.1,
+        'e': 0.15,
+        'f': 0.2,
+        'g': 0.25
     }
     coder = HuffmanCoder(char_frequency)
     print(coder.huffman_tree)
-    code = coder.encode('abcdefgh')
+    coder.huffman_tree.display_networkx_graph()
+    plt.show()
+    code = coder.encode('abcdefg')
     print(code)
     print(coder.decode(code))

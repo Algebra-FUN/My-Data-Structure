@@ -32,7 +32,7 @@ def trace_back(p, u0):
         while v not in (u0,-1):
             v = p[v]
             path.append(v)
-    return [_[::-1] for _ in paths]
+    return [tuple(_[::-1]) for _ in paths]
 
 
 def Dijkstra(w, u0):
@@ -65,6 +65,7 @@ if __name__ == "__main__":
         [25, inf, 20, 10, 0, 55],
         [10, 25, inf, 25, 55, 0]
     ]
-    for i in range(6):
-        print(Dijkstra(A, i))
-    print(Floyd(A))
+    # for i in range(6):
+    #     print(Dijkstra(A, i))
+    dis,path = Floyd(A)
+    print(path)

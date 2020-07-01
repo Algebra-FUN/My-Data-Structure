@@ -122,7 +122,7 @@ TBTNode *create_postorder_thread(TBTNode *p)
 
 int main()
 {
-    char string[] = "A(B(D(,G),),C(E,F))";
+    char string[] = "a(b(,d),c(e,f))";
     cout << "original binary tree:" << string << endl;
     TBTNode *p;
     p = buildTBT(string);

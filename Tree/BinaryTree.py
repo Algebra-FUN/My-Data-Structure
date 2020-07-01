@@ -158,6 +158,7 @@ class BinaryTree:
         graph = self.to_networkx_graph()
         nx.draw_kamada_kawai(graph, with_labels=True, font_weight='bold')
 
+
 if __name__ == "__main__":
     # tree = BinaryTree.create('A(B(D(H(I,J(K,L)),G),S),C(E,F(M,)))')
     # # tree1 = BinaryTree.create('A(B(D(,F)),C(E,G))')
@@ -170,7 +171,7 @@ if __name__ == "__main__":
     # print(tree)
     # tree.display_networkx_graph()
     # plt.show()
-    bt = BinaryTree.create('A(B(D(,G),),C(E,F))')
+    bt = BinaryTree.create('a(b(,d),c(e,f))')
     print(*bt.preorder_traversal())
     print(*bt.inorder_traversal())
     print(*bt.postorder_traversal())

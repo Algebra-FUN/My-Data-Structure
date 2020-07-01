@@ -17,11 +17,12 @@ def TopoSort(adjlist):
 
 if __name__ == "__main__":
     adjlist = [
-        [1],
         [2],
+        [3,4,6],
         [3],
+        [4,5],
         [],
-        [1,5],
-        [3]
+        [],
+        [5]
     ]
     print(*TopoSort(adjlist))
