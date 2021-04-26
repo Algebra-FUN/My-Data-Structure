@@ -84,7 +84,7 @@ if __name__ == "__main__":
             map_[x][y] = -1
         plt.imshow(map_)
         plt.pause(.5)
-        plt.savefig(r'./temp/{}.png'.format(i))
+        plt.savefig(f'./temp/{i}.png')
         i += 1
     maze = Maze(maze_map, painter)
     plt.ion()

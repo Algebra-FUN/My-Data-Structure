@@ -3,3 +3,4 @@ temp*
 *.exe
 __pycache__
 tempCodeRunnerFile.py
+tmp*

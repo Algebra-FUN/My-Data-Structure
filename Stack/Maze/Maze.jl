@@ -15,6 +15,7 @@
 
 function route(α, β)
     Γ = [α]
+    Γs = []
     function go()
         p = Γ[end]
         if p == β
@@ -24,6 +25,7 @@ function route(α, β)
             x, y = p
             if Σ[x][y] == 0 && p ∉ Γ
                 Γ = [Γ;[p]]
+                push!(Γs,Γ)
                 if go()
                     return true
                 end
@@ -33,7 +35,7 @@ function route(α, β)
         return false
     end 
     go()
-    return Γ
+    return Γ,Γs
 end
 
 α = [2,2]
